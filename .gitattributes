@@ -1,0 +1,8 @@
+# Exclude development and documentation files from composer archives
+/docs export-ignore
+/tests export-ignore
+phpunit.xml export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
+.phpunit.cache export-ignore
+composer.lock export-ignore

@@ -1,0 +1,491 @@
+/**
+ * Filament Media Library - Custom Styling
+ *
+ * This stylesheet provides independent styling for the Media Library interface,
+ * supporting both light and dark mode automatically via Filament's dark mode tags.
+ *
+ * Documented Customization Classes:
+ * - .fml-media-box: Container grid for the media resource explorer page.
+ * - .fml-sidebar: Sidebar navigation panel.
+ * - .fml-card: Individual media item card.
+ * - .fml-card-preview: Image/video preview section within a card.
+ * - .fml-card-footer: Text and metadata section of a card.
+ * - .fml-dropdown: Dropdown actions overlay (positioned relative to cards).
+ * - .fml-context-menu: Right-click context menu overlay.
+ * - .fml-lightbox: Responsive media viewer lightbox modal.
+ * - .fml-guide-card: Welcome guide panel for first-time users.
+ */
+
+:root {
+    /* Color tokens */
+    --fml-primary: 59, 130, 246;
+    /* RGB format for opacity adjustments */
+    --fml-primary-hover: 37, 99, 235;
+
+    --fml-bg: #f9fafb;
+    --fml-card-bg: #ffffff;
+    --fml-border: #f3f4f6;
+    --fml-border-hover: #e5e7eb;
+
+    --fml-text: #111827;
+    --fml-text-muted: #6b7280;
+    --fml-text-light: #9ca3af;
+
+    /* Shadows */
+    --fml-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --fml-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --fml-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Mode Adaptation */
+.dark :root,
+.dark {
+    --fml-bg: #090d16;
+    --fml-card-bg: #111827;
+    --fml-border: #1f2937;
+    --fml-border-hover: #374151;
+
+    --fml-text: #f9fafb;
+    --fml-text-muted: #9ca3af;
+    --fml-text-light: #6b7280;
+}
+
+/* Page Layout Wrapper */
+.fml-media-box {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    position: relative;
+    align-items: start;
+}
+
+@media (min-width: 1024px) {
+    .fml-media-box {
+        grid-template-columns: 240px 1fr;
+        transition: grid-template-columns 0.3s ease;
+    }
+    .fml-media-box.fml-has-editor {
+        grid-template-columns: 240px 1.5fr 1.5fr;
+    }
+}
+
+/* Sidebar Navigation */
+.fml-sidebar {
+    background-color: var(--fml-card-bg);
+    border: 1px solid var(--fml-border);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: var(--fml-shadow-sm);
+}
+
+/* Media Card Grid */
+.fml-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .fml-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+/* Media Item Card */
+.fml-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--fml-card-bg);
+    border: 1px solid var(--fml-border);
+    border-radius: 0.75rem;
+    box-shadow: var(--fml-shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+}
+
+.fml-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--fml-shadow-md);
+    border-color: rgb(var(--fml-primary));
+}
+
+/* Image Preview Block */
+.fml-card-preview {
+    aspect-ratio: 1 / 1;
+    background-color: var(--fml-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    border-bottom: 1px solid var(--fml-border);
+    cursor: pointer;
+}
+
+.fml-card-preview img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+.fml-card:hover .fml-card-preview img {
+    transform: scale(1.03);
+}
+
+/* Metadata Card Footer */
+.fml-card-footer {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+
+.fml-card-title {
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--fml-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.fml-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: 0.25rem;
+    font-size: 0.65rem;
+    color: var(--fml-text-muted);
+}
+
+/* User Guide / News Card Banner */
+.fml-guide-card {
+    background: linear-gradient(135deg, rgba(var(--fml-primary), 0.08) 0%, rgba(var(--fml-primary), 0.02) 100%);
+    border: 1px dashed rgba(var(--fml-primary), 0.3);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    position: relative;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.fml-guide-card-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--fml-text-muted);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0.25rem;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.fml-guide-card-close:hover {
+    background-color: rgba(var(--fml-primary), 0.1);
+    color: rgb(var(--fml-primary));
+}
+
+.fml-guide-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    .fml-guide-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.fml-guide-item {
+    background-color: var(--fml-card-bg);
+    border: 1px solid var(--fml-border);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: var(--fml-shadow-sm);
+}
+
+.fml-guide-item h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--fml-text);
+}
+
+.fml-guide-item p {
+    font-size: 0.75rem;
+    color: var(--fml-text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Context Menu overlay */
+.fml-context-menu {
+    position: fixed;
+    z-index: 99999;
+    min-width: 180px;
+    background-color: var(--fml-card-bg);
+    border: 1px solid var(--fml-border-hover);
+    border-radius: 0.5rem;
+    box-shadow: var(--fml-shadow-lg);
+    padding: 0.25rem 0;
+}
+
+.fml-context-menu button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-size: 0.75rem;
+    color: var(--fml-text);
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.fml-context-menu button:hover {
+    background-color: rgba(var(--fml-primary), 0.08);
+    color: rgb(var(--fml-primary));
+}
+
+.fml-context-divider {
+    height: 1px;
+    background-color: var(--fml-border);
+    margin: 0.25rem 0;
+}
+
+/* Video controls preview */
+.fml-video-player {
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: var(--fml-shadow-md);
+    background-color: #000000;
+}
+
+/* PDF/Document Viewers */
+.fml-pdf-viewer {
+    width: 100%;
+    height: 75vh;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    box-shadow: var(--fml-shadow-lg);
+}
+
+/* Lightbox Modal */
+.fml-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+}
+
+.fml-lightbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.fml-lightbox-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+.fml-lightbox-viewer {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    height: 100%;
+}
+
+.fml-lightbox-nav {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.fml-lightbox-nav:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Visual Editor Panel */
+.fml-editor-panel {
+    background-color: var(--fml-card-bg);
+    border: 1px solid var(--fml-border);
+    border-radius: 0.75rem;
+    box-shadow: var(--fml-shadow-md);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-self: start;
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 1023px) {
+    .fml-editor-panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-height: 85vh;
+        z-index: 1000;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        box-shadow: 0 -10px 25px -5px rgba(0,0,0,0.1), 0 -8px 10px -6px rgba(0,0,0,0.05);
+    }
+}
+
+/* Visual Editor Header */
+.fml-editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--fml-border);
+    padding-bottom: 0.75rem;
+}
+
+.fml-editor-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--fml-text);
+    margin: 0;
+}
+
+/* Visual Editor Body & Preview elements */
+.fml-editor-preview-container {
+    background-color: var(--fml-bg);
+    border: 1px solid var(--fml-border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+    max-height: 350px;
+}
+
+.fml-editor-preview-container img,
+.fml-editor-preview-container video {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+/* SVG XML Source editor styles */
+.fml-svg-editor-textarea {
+    width: 100%;
+    height: 180px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.75rem;
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #475569;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    resize: vertical;
+}
+
+.dark .fml-svg-editor-textarea {
+    background-color: #0f172a;
+    color: #cbd5e1;
+}
+
+/* Timeline trimmer slider styling */
+.fml-trim-timeline {
+    position: relative;
+    height: 48px;
+    background: #e2e8f0;
+    border-radius: 6px;
+    margin: 1rem 0;
+}
+
+.dark .fml-trim-timeline {
+    background: #334155;
+}
+
+/* Word Document style preview */
+.fml-docx-preview {
+    background-color: #ffffff;
+    color: #334155;
+    font-family: Georgia, serif;
+    font-size: 0.8rem;
+    padding: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    width: 100%;
+    max-height: 220px;
+    overflow-y: auto;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* Inline Edit Tab system styling */
+.fml-tabs-nav {
+    display: flex;
+    border-bottom: 1px solid var(--fml-border);
+    margin-bottom: 0.5rem;
+}
+
+.fml-tab-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: var(--fml-text-muted);
+}
+
+.fml-tab-btn.active {
+    border-bottom-color: rgb(var(--fml-primary));
+    color: rgb(var(--fml-primary));
+}
+
+/* Dynamic Cropper area adjustment */
+.fml-cropper-wrapper {
+    max-width: 100%;
+    max-height: 250px;
+}

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filament Media Library Plugin Documentation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo" style="height: 24px; margin-right: 8px;" />
+            <span>tsrgtm / filament-media-library</span>
+        </div>
+        <div class="header-actions">
+            <div class="search-container">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" id="search-input" class="search-input" placeholder="Search documentation...">
+                <kbd class="search-kbd">/</kbd>
+            </div>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+                <i data-lucide="moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Layout Wrapper -->
+    <div class="layout-wrapper">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="nav-group">
+                <h3 class="nav-group-title">Getting Started</h3>
+                <ul class="nav-links">
+                    <li><a href="#welcome" class="nav-link active"><i data-lucide="book-open"></i>Introduction</a></li>
+                    <li><a href="#installation" class="nav-link"><i data-lucide="download"></i>Installation</a></li>
+                    <li><a href="#configuration" class="nav-link"><i data-lucide="sliders"></i>Configuration</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h3 class="nav-group-title">Core Features</h3>
+                <ul class="nav-links">
+                    <li><a href="#polymorphic-system" class="nav-link"><i data-lucide="link"></i>Polymorphic Relations</a></li>
+                    <li><a href="#image-processing" class="nav-link"><i data-lucide="zap"></i>Image Processing</a></li>
+                    <li><a href="#url-handling" class="nav-link"><i data-lucide="shield-check"></i>SEO Stable URLs</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h3 class="nav-group-title">Integrations</h3>
+                <ul class="nav-links">
+                    <li><a href="#livewire-support" class="nav-link"><i data-lucide="terminal"></i>Livewire Integration</a></li>
+                    <li><a href="#filament-plugin" class="nav-link"><i data-lucide="server"></i>Filament Components</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h3 class="nav-group-title">Advanced Specs</h3>
+                <ul class="nav-links">
+                    <li><a href="#smart-features" class="nav-link"><i data-lucide="info"></i>Smart Storage &amp; Security</a></li>
+                    <li><a href="#api-reference" class="nav-link"><i data-lucide="terminal"></i>API Reference</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <h3 class="nav-group-title">✨ New Features</h3>
+                <ul class="nav-links">
+                    <li><a href="#video-support" class="nav-link"><i data-lucide="video"></i>Video Upload &amp; Trim</a></li>
+                    <li><a href="#inline-editing" class="nav-link"><i data-lucide="edit-3"></i>Inline Media Editing</a></li>
+                    <li><a href="#lightbox-preview" class="nav-link"><i data-lucide="maximize"></i>Lightbox &amp; Previews</a></li>
+                    <li><a href="#css-customization" class="nav-link"><i data-lucide="palette"></i>CSS Customization</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            
+            <!-- Welcome -->
+            <section id="welcome">
+                <h1>Filament Media Library</h1>
+                <p class="badge">Version 1.0.0 — Stable</p>
+                <div class="hero-banner" style="margin: 1.5rem 0;">
+                    <img src="banner.png" alt="Filament Media Library Banner" style="width: 100%; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); border: 1px solid var(--border);" />
+                </div>
+                <p>Welcome to the Filament Media Library documentation. A premium, production-ready Laravel package for managing model attachments, fully optimized for <strong>Laravel 10+</strong>, <strong>Filament v3/4/5</strong>, and <strong>Livewire v3/4</strong>.</p>
+
+                <!-- What's New banner -->
+                <div class="callout info" style="border-left-color: #8b5cf6; background: linear-gradient(135deg, rgba(139,92,246,0.07), rgba(139,92,246,0.02));">
+                    <i data-lucide="sparkles" style="color:#8b5cf6"></i>
+                    <div class="callout-content">
+                        <h4 class="callout-title" style="color:#8b5cf6">✨ Stable Version 1.0 Release</h4>
+                        <p>This stable release brings a persistent <strong>in-page, split-view Visual Preview & Editor panel</strong> with <strong>interactive image cropping (Cropper.js)</strong>, a <strong>video range trimmer slider timeline</strong>, an **SVG monospaced code editor with instant live render**, a **DOCX mock page view with find/replace**, **PDF metadata editing**, and **plain-text file content editing** — all working seamlessly alongside our fullscreen lightbox and right-click context menus with full dark mode support.</p>
+                    </div>
+                </div>
+
+                <!-- Quick-start feature cards -->
+                <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:1rem; margin-top:1.5rem;">
+                    <div style="background:var(--bg-card,#fff); border:1px solid var(--border,#e5e7eb); border-radius:.75rem; padding:1.25rem;">
+                        <div style="font-size:1.5rem;margin-bottom:.5rem;">🖼️</div>
+                        <h4 style="margin:0 0 .25rem;">Upload &amp; Folders</h4>
+                        <p style="font-size:.8rem;color:#6b7280;margin:0;">Upload images, videos, PDFs, and documents up to 500 MB. Organize with named collections/folders.</p>
+                    </div>
+                    <div style="background:var(--bg-card,#fff); border:1px solid var(--border,#e5e7eb); border-radius:.75rem; padding:1.25rem;">
+                        <div style="font-size:1.5rem;margin-bottom:.5rem;">✂️</div>
+                        <h4 style="margin:0 0 .25rem;">Inline Editing</h4>
+                        <p style="font-size:.8rem;color:#6b7280;margin:0;">Crop images, trim videos, find &amp; replace in DOCX, edit PDF metadata, and edit text files — all in-browser.</p>
+                    </div>
+                    <div style="background:var(--bg-card,#fff); border:1px solid var(--border,#e5e7eb); border-radius:.75rem; padding:1.25rem;">
+                        <div style="font-size:1.5rem;margin-bottom:.5rem;">👁️</div>
+                        <h4 style="margin:0 0 .25rem;">Lightbox Previews</h4>
+                        <p style="font-size:.8rem;color:#6b7280;margin:0;">Click any item to view it fullscreen. Renders images, videos (HTML5), audio, and PDFs in an iframe.</p>
+                    </div>
+                    <div style="background:var(--bg-card,#fff); border:1px solid var(--border,#e5e7eb); border-radius:.75rem; padding:1.25rem;">
+                        <div style="font-size:1.5rem;margin-bottom:.5rem;">⚡</div>
+                        <h4 style="margin:0 0 .25rem;">Context Actions</h4>
+                        <p style="font-size:.8rem;color:#6b7280;margin:0;">Right-click any card or open the ⋮ menu to access copy URL, edit, crop, trim, delete, and more.</p>
+                    </div>
+                </div>
+
+                <div class="callout info" style="margin-top:1.5rem;">
+                    <i data-lucide="info"></i>
+                    <div class="callout-content">
+                        <h4 class="callout-title">Architecture Focus</h4>
+                        <p>This library addresses core media pitfalls: maintaining permanent SEO-friendly asset links, compressing file size via automatic WebP and responsive dimensions, detecting physical duplicates to save storage space, and providing developer-friendly integration via traits and dedicated Filament inputs.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installation -->
+            <section id="installation">
+                <h2><i data-lucide="download"></i>Installation</h2>
+                <p>Install the package inside your Laravel 13 project namespace using composer:</p>
+                <pre><code>composer require tsrgtm/filament-media-library</code></pre>
+                
+                <p>Publish configuration defaults and database schema tables:</p>
+                <pre><code>php artisan vendor:publish --provider="Tsrgtm\FilamentMediaLibrary\MediaLibraryServiceProvider"</code></pre>
+                
+                <p>Execute migrations to configure the database:</p>
+                <pre><code>php artisan migrate</code></pre>
+            </section>
+
+            <!-- Configuration -->
+            <section id="configuration">
+                <h2><i data-lucide="sliders"></i>Detailed Configuration</h2>
+                <p>The package preferences are defined in the published config file <code>config/media-library.php</code>. These configurations govern the storage adapters, sizing boundaries, conversions, and engine processing parameters.</p>
+
+                <h3>Option Parameters & Value Limits</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Data Type</th>
+                            <th>Default Value</th>
+                            <th>Value Options & Limits</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>disk</code></td>
+                            <td><code>string</code></td>
+                            <td><code>'public'</code></td>
+                            <td><code>'public'</code>, <code>'s3'</code>, <code>'local'</code>, etc.</td>
+                            <td>The storage disk for public media files. Must correspond to a disk in <code>config/filesystems.php</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>private_disk</code></td>
+                            <td><code>string</code></td>
+                            <td><code>'local'</code></td>
+                            <td><code>'local'</code>, <code>'s3'</code>, etc.</td>
+                            <td>Storage disk for secure documents requiring signed temporary URLs.</td>
+                        </tr>
+                        <tr>
+                            <td><code>max_file_size</code></td>
+                            <td><code>integer</code></td>
+                            <td><code>52428800</code> (50MB)</td>
+                            <td><code>&gt; 0</code> (in bytes)</td>
+                            <td>Strict maximum allowed size limit per uploaded file. Exceeding this triggers a validation error.</td>
+                        </tr>
+                        <tr>
+                            <td><code>webp_enabled</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>true</code></td>
+                            <td><code>true</code>, <code>false</code></td>
+                            <td>Enables or disables automatic conversion of image formats (jpeg, png, gif) to WebP.</td>
+                        </tr>
+                        <tr>
+                            <td><code>image_quality</code></td>
+                            <td><code>integer</code></td>
+                            <td><code>80</code></td>
+                            <td><code>10</code> to <code>100</code></td>
+                            <td>Compression quality parameter for conversions. <code>10</code> yields smallest footprint, <code>100</code> yields lossless quality.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cache.enabled</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>true</code></td>
+                            <td><code>true</code>, <code>false</code></td>
+                            <td>Toggles query and URL route caching to optimize database queries.</td>
+                        </tr>
+                        <tr>
+                            <td><code>cache.ttl</code></td>
+                            <td><code>integer</code></td>
+                            <td><code>3600</code></td>
+                            <td><code>&gt;= 0</code> (seconds)</td>
+                            <td>Time-to-live duration for cache keys. <code>3600</code> equates to 1 hour.</td>
+                        </tr>
+                        <tr>
+                            <td><code>queue.enabled</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>false</code></td>
+                            <td><code>true</code>, <code>false</code></td>
+                            <td>If <code>true</code>, conversions are handled asynchronously in the background. If <code>false</code>, processed synchronously.</td>
+                        </tr>
+                        <tr>
+                            <td><code>duplicate_detection.enabled</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>true</code></td>
+                            <td><code>true</code>, <code>false</code></td>
+                            <td>Toggles SHA-256 hash checks on uploads to protect against duplicate files.</td>
+                        </tr>
+                        <tr>
+                            <td><code>duplicate_detection.strategy</code></td>
+                            <td><code>string</code></td>
+                            <td><code>'link'</code></td>
+                            <td><code>'link'</code>, <code>'separate'</code></td>
+                            <td><code>'link'</code> references the same physical storage path. <code>'separate'</code> writes files separately.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Polymorphic System -->
+            <section id="polymorphic-system">
+                <h2><i data-lucide="link"></i>Polymorphic Relations</h2>
+                <p>To associate media collections with any Eloquent model, implement the <code>HasMedia</code> trait. Define your collections inside the <code>mediaCollections()</code> method.</p>
+                
+                <pre><code>namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Tsrgtm\FilamentMediaLibrary\Traits\HasMedia;
+
+class Post extends Model
+{
+    use HasMedia;
+
+    public function mediaCollections(): array
+    {
+        return [
+            'featured_image' => [
+                'single' => true,      // Evicts older files automatically on update
+                'conversions' => ['webp'],
+                'fallback' => '/images/default-featured.png'
+            ],
+            'images' => [
+                'multiple' => true,    // Allows attaching lists of files
+            ],
+        ];
+    }
+}</code></pre>
+
+                <h3>Polymorphic Collection Configuration Options</h3>
+                <p>Each key in the returned array represents a collection name (e.g. <code>'featured_image'</code>), supporting these optional keys:</p>
+                <ul>
+                    <li><code>single</code> (boolean): If <code>true</code>, only a single media file is stored, and subsequent uploads automatically delete previous attachments in that collection. If <code>false</code> (default), multiple files are permitted.</li>
+                    <li><code>conversions</code> (array): List of custom conversions to execute on save (e.g. <code>['thumb', 'medium']</code>).</li>
+                    <li><code>fallback</code> (string): Absolute public path/URL returned by `getFirstMediaUrl()` if no files are uploaded.</li>
+                </ul>
+
+                <h3>Fluent Upload API</h3>
+                <p>Upload files from local paths or request payloads using the developer-friendly builder API:</p>
+                <pre><code>// Upload files from request inputs
+$post->addMedia($request->file('avatar'))
+     ->withAltText('Profile avatar')
+     ->toCollection('avatar');
+
+// Upload local files
+$post->addMedia(storage_path('temp/catalog.pdf'))
+     ->preservingOriginal()
+     ->usingName('Product Sheet')
+     ->to('documents');</code></pre>
+            </section>
+
+            <!-- Image Processing -->
+            <section id="image-processing">
+                <h2><i data-lucide="zap"></i>Image Processing & Responsive HTML</h2>
+                <p>Using <strong>Intervention Image v3</strong>, uploaded photos are auto-optimized, resized, and converted to WebP. Additionally, the system generates responsive scaling variants (default: 480px, 800px, 1200px) and calculates dimensions.</p>
+
+                <h3>Configuring Resizing Conversions</h3>
+                <p>Define target image conversions inside the <code>'conversions'</code> block of <code>config/media-library.php</code>:</p>
+                <pre><code>'conversions' => [
+    'thumb' => [
+        'width' => 150,    // Target width in pixels (integer)
+        'height' => 150,   // Target height in pixels (integer)
+        'fit' => true,     // Boolean: true crops (Cover), false scales keeping aspect ratio
+    ],
+    'medium' => [
+        'width' => 800,
+        'height' => null,
+        'fit' => false,
+    ]
+]</code></pre>
+
+                <h3>Rendering Responsive Images in Blade</h3>
+                <p>To print an image with calculated <code>srcset</code> attributes for screen dimensions, call the <code>img()</code> helper directly on a Media record:</p>
+                <pre><code>// In your Blade file:
+{!! $post->getFirstMedia('featured_image')->img('medium', ['class' => 'rounded-xl border']) !!}</code></pre>
+                
+                <p>This generates the following SEO-compliant HTML code:</p>
+                <pre><code>&lt;img src="/media-serve/14/photo.jpg" 
+     alt="Profile avatar" 
+     srcset="/media-serve/14/photo.jpg?w=480 480w, /media-serve/14/photo.jpg?w=800 800w" 
+     sizes="(max-width: 1200px) 100vw, 1200px" 
+     class="rounded-xl border" /&gt;</code></pre>
+
+                <h3>On-Demand Image Conversions & Format Mutation</h3>
+                <p>From the Media Library page, you can dynamically trigger custom conversions on single or bulk image records without altering their persistent URLs:
+                <ul>
+                    <li><strong>Convert Format:</strong> Convert format types dynamically between <code>JPEG</code>, <code>PNG</code>, and <code>WebP</code>.</li>
+                    <li><strong>Quality Compression Slider:</strong> Tune the compression quality slider from <code>10</code> (maximum optimization) to <code>100</code> (lossless).</li>
+                    <li><strong>Dimension Constraints:</strong> Scale down large original images on-the-fly by defining Max Width or Max Height constraint thresholds.</li>
+                    <li><strong>Static URLs:</strong> When files are converted, the physical file is overwritten on disk. The serving URL remains unchanged, and the controller dynamically returns the mutated Content-Type from the database.</li>
+                </ul>
+                </p>
+            </section>
+
+            <!-- SEO URL Handling -->
+            <section id="url-handling">
+                <h2><i data-lucide="shield-check"></i>SEO Stable URLs</h2>
+                <div class="callout warning">
+                    <i data-lucide="alert-triangle"></i>
+                    <div class="callout-content">
+                        <h4 class="callout-title">SEO Crucial Guideline</h4>
+                        <p>Changing directories or file formats directly on disk breaks links and harms search engine indexing. To prevent this, never serve raw file paths directly.</p>
+                    </div>
+                </div>
+                <p>Assets are served via static URLs: <code>/media-serve/{media_id}/{filename}</code>. When requested, our controller checks headers (Accept WebP) and streams optimized data without modifying the URL address.</p>
+            </section>
+
+            <!-- Livewire Integration -->
+            <section id="livewire-support">
+                <h2><i data-lucide="terminal"></i>Livewire Integration</h2>
+                <p>The library is fully compatible with Livewire's file upload subsystem. Files uploaded via Livewire represent instances of <code>Livewire\Features\SupportFileUploads\TemporaryUploadedFile</code>.</p>
+                
+                <p>Since this class inherits from standard Laravel uploads, pass the Livewire variable directly to our Fluent upload builder inside your Livewire components:</p>
+                
+                <pre><code>namespace App\Livewire;
+
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use App\Models\Post;
+
+class ManagePostMedia extends Component
+{
+    use WithFileUploads;
+
+    public Post $post;
+    public $photo; // Holds Livewire TemporaryUploadedFile
+
+    public function save()
+    {
+        $this->validate([
+            'photo' => 'image|max:1024', // Standard validations
+        ]);
+
+        // Process directly using our polymorphic Fluent API
+        $this->post->addMedia($this->photo)
+            ->toCollection('gallery');
+
+        session()->flash('message', 'Media successfully uploaded.');
+    }
+}</code></pre>
+            </section>
+
+            <!-- Filament Custom Component -->
+            <section id="filament-plugin">
+                <h2><i data-lucide="server"></i>Filament Custom Component</h2>
+                
+                <h3>Plugin Registration</h3>
+                <p>Register the media library plugin inside your Panel Provider configuration (e.g. <code>app/Providers/Filament/AdminPanelProvider.php</code>):</p>
+                <pre><code>use Tsrgtm\FilamentMediaLibrary\Filament\MediaLibraryPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        // ...
+        ->plugins([
+            MediaLibraryPlugin::make(),
+        ]);
+}</code></pre>
+
+                <h3>Plugin Customization Options</h3>
+                <p>You can dynamically configure navigation icons, labels, sorting, slugs, and toggle the settings header action using the fluent options builder:</p>
+                <pre><code>MediaLibraryPlugin::make()
+    // Resource Customization:
+    ->icon('heroicon-o-photo') // Customize navigation icon (alias for navigationIcon)
+    ->label('Media Library')   // Customize navigation label (alias for navigationLabel)
+    ->navigationGroup('Content')
+    ->navigationSort(5)
+    ->slug('media-library')
+
+    // Settings Customization:
+    ->showSettings(true)       // Toggle visibility of the settings header action modal</code></pre>
+
+                <h3>Polymorphic Relationship Uploader</h3>
+                <p>A standard Filament <code>FileUpload</code> input expects to save file paths directly into the parent model's table column. Because this package utilizes a polymorphic database relationship, a standard input will fail.</p>
+                
+                <p>To solve this, use our custom **<code>MediaLibraryUpload</code>** component. It handles dynamic relationship query loads (via <code>loadStateFromRelationshipsUsing</code>) and saves uploads securely into the correct database collections (via <code>saveRelationshipsUsing</code>) while keeping all standard FileUpload validation, drag-and-drop, and preview capabilities intact.</p>
+
+                <h3>Usage in Filament Resources</h3>
+                <p>Import and append the input component inside your Resource form scheme:</p>
+
+                <pre><code>use Tsrgtm\FilamentMediaLibrary\Filament\Components\MediaLibraryUpload;
+
+public static function form(Form $form): Form
+{
+    return $form
+        ->schema([
+            Forms\Components\TextInput::make('title')
+                ->required(),
+
+            // Custom Polymorphic Media Library Uploader
+            MediaLibraryUpload::make('featured_image')
+                ->label('Featured Image')
+                ->collection('featured_image') // Links to HasMedia collection key
+                ->image() // Validates image files
+                ->maxSize(2048) // max size validation in KB
+                ->imagePreviewHeight('150')
+                ->required(),
+
+            MediaLibraryUpload::make('images')
+                ->label('Gallery Images')
+                ->collection('images')
+                ->multiple() // Supports multi-upload layout
+                ->reorderable(), // Drag & drop sorting
+        ]);
+}</code></pre>
+
+                <h3>WordPress-Style Media Library Picker</h3>
+                <p>Instead of forcing users to upload files repeatedly, use the <strong><code>MediaLibraryPicker</code></strong> component. It launches a modal to search, browse, and reuse already-uploaded media records, preventing storage bloating.</p>
+                <p>When selecting a media asset, a sidebar is opened (matching WordPress's design) to let you inspect details (dimensions, size, file name) and edit metadata like <code>Title</code> and <code>Alt Text</code> in place.</p>
+                
+                <pre><code>use Tsrgtm\FilamentMediaLibrary\Filament\Components\MediaLibraryPicker;
+
+public static function form(Form $form): Form
+{
+    return $form
+        ->schema([
+            // Select and reuse existing media items
+            MediaLibraryPicker::make('featured_image')
+                ->label('Choose Featured Image')
+                ->collection('featured_image')
+                ->required(),
+
+            MediaLibraryPicker::make('gallery')
+                ->label('Choose Gallery Images')
+                ->collection('gallery')
+                ->multiple(), // Supports selecting multiple items from library
+        ]);
+}</code></pre>
+            </section>
+
+            <!-- Video Upload & Trim -->
+            <section id="video-support">
+                <h2><i data-lucide="video"></i>Video Upload &amp; Trim</h2>
+                <p>The plugin supports video uploads up to <strong>500 MB</strong> by default (configurable in <code>config/media-library.php</code>). Videos are stored using the same polymorphic system as images and documents.</p>
+
+                <h3>Thumbnail Generation</h3>
+                <p>Video thumbnails are auto-generated during upload via <code>VideoProcessor</code> using the <code>php-ffmpeg/php-ffmpeg</code> package. Install it and configure binary paths:</p>
+                <pre><code>composer require php-ffmpeg/php-ffmpeg</code></pre>
+                <pre><code>// config/media-library.php
+'ffmpeg' => [
+    'ffmpeg_binary'  => env('FFMPEG_BINARY', '/usr/bin/ffmpeg'),
+    'ffprobe_binary' => env('FFPROBE_BINARY', '/usr/bin/ffprobe'),
+    'timeout'        => 3600,
+],</code></pre>
+                <div class="callout warning">
+                    <i data-lucide="alert-triangle"></i>
+                    <div class="callout-content">
+                        <h4 class="callout-title">FFMpeg Optional</h4>
+                        <p>If FFMpeg binaries are not installed, the plugin falls back gracefully — videos still upload and play, but thumbnails are not generated. A warning is logged, not an exception.</p>
+                    </div>
+                </div>
+
+                <h3>Trim Video Action</h3>
+                <p>Right-click a video card or open its action menu and choose <strong>Trim Video</strong>. Enter a start time and end time in seconds. The <code>VideoProcessor::trim()</code> service exports the trimmed segment back into the same storage path and updates the media record.</p>
+                <pre><code>// Called by the Trim action internally:
+app(VideoProcessor::class)->trim($media, $startSeconds, $endSeconds);</code></pre>
+            </section>
+
+            <!-- Inline Media Editing -->
+            <section id="inline-editing">
+                <h2><i data-lucide="edit-3"></i>Inline Media Editing &amp; Split-View</h2>
+                <p>All editing and preview actions are integrated directly into our persistent, desktop **Split-View Visual Preview &amp; Editor Panel** on the right side of the explorer workspace. Single-clicking any media card slides the panel into view, allowing you to edit the file inline. Double-clicking or clicking the fullscreen icon opens the deep lightbox viewer.</p>
+
+                <h3>🖼️ In-Page Image Crop (Cropper.js)</h3>
+                <p>Click "Crop Image" inside the right panel to initialize an interactive cropping overlay powered by Cropper.js. Drag the corner handles to crop, see live dimensions, and save changes. The cropped image is re-encoded in the original format, written to storage, and responsive image conversions are regenerated.</p>
+
+                <h3>🎞️ Video Trimmer Slider Timeline</h3>
+                <p>For videos, the right panel renders an HTML5 player and an interactive dual-handled range slider (trim timeline). Drag the sliders to define the start and end trim boundaries. Save to write the trimmed file directly to storage using FFMpeg.</p>
+
+                <h3>⚡ Live SVG Code Editor</h3>
+                <p>When selecting SVG files, the Visual Editor displays a tabbed interface. The **Code Editor** tab features a monospaced text editor for raw SVG XML content, and the **Live Preview** tab renders changes immediately as you type.</p>
+
+                <h3>📝 DOCX Find &amp; Replace</h3>
+                <p>Word documents (DOCX) are loaded as styled paper pages with extracted textual layout. Users can use the in-page Find &amp; Replace form to search for specific strings and replace them across the entire document securely.</p>
+
+                <h3>📄 PDF Metadata Editor</h3>
+                <p>PDFs are embedded in-page using a high-fidelity iframe. Alongside the PDF, a metadata form lets you edit properties like Title, Author, Subject, and Keywords stored inside <code>custom_properties</code>.</p>
+
+                <h3>🗒️ Plain Text File Editor</h3>
+                <p>For files with extensions <code>.txt</code>, <code>.csv</code>, <code>.json</code>, <code>.xml</code>, <code>.md</code>, <code>.html</code>, <code>.css</code>, <code>.js</code>, the panel loads a Monospace code textarea to modify the file content and updates the file size and SHA-256 hash automatically.</p>
+
+                <h3>🔄 File Replacement</h3>
+                <p>Swap the physical file of any media item with a new upload while preserving the media record's ID, SEO-stable URLs, and metadata. Old conversions and responsive variants are cleaned up automatically.</p>
+            </section>
+
+            <!-- Lightbox & Previews -->
+            <section id="lightbox-preview">
+                <h2><i data-lucide="maximize"></i>Lightbox &amp; Previews</h2>
+                <p>Clicking any media card opens a full-screen lightbox viewer with automatic type detection:</p>
+                <table>
+                    <thead><tr><th>File Type</th><th>Viewer</th></tr></thead>
+                    <tbody>
+                        <tr><td>Images (jpg, png, gif, webp, svg)</td><td>Zoomable <code>&lt;img&gt;</code> tag</td></tr>
+                        <tr><td>Videos (mp4, webm, ogg)</td><td>HTML5 <code>&lt;video&gt;</code> with controls and autoplay</td></tr>
+                        <tr><td>Audio (mp3, wav, ogg)</td><td>HTML5 <code>&lt;audio&gt;</code> player with animated icon</td></tr>
+                        <tr><td>PDF</td><td>Inline <code>&lt;iframe&gt;</code> viewer (75vh height)</td></tr>
+                        <tr><td>All other documents</td><td>Download / View in new tab button</td></tr>
+                    </tbody>
+                </table>
+                <h3>Keyboard Navigation</h3>
+                <ul>
+                    <li><kbd>←</kbd> Previous item</li>
+                    <li><kbd>→</kbd> Next item</li>
+                    <li><kbd>Esc</kbd> Close lightbox</li>
+                </ul>
+                <div class="callout info">
+                    <i data-lucide="info"></i>
+                    <div class="callout-content">
+                        <h4 class="callout-title">Implementation Note</h4>
+                        <p>The lightbox items list is serialized server-side into the Alpine component data at render time. This prevents broken state after Livewire re-renders and ensures navigation always reflects the current page of results.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CSS Customization -->
+            <section id="css-customization">
+                <h2><i data-lucide="palette"></i>CSS Customization</h2>
+                <p>The plugin registers its own stylesheet via <code>FilamentAsset::register()</code>. All classes are prefixed <code>fml-</code> and use CSS variables for theming. Dark mode is handled automatically through Filament's dark-mode class.</p>
+
+                <h3>Documented Classes</h3>
+                <table>
+                    <thead><tr><th>Class</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>.fml-media-box</code></td><td>Root grid layout for the media page (sidebar + content)</td></tr>
+                        <tr><td><code>.fml-sidebar</code></td><td>Left navigation panel</td></tr>
+                        <tr><td><code>.fml-card</code></td><td>Individual media item card</td></tr>
+                        <tr><td><code>.fml-card-preview</code></td><td>Thumbnail/icon preview area within a card</td></tr>
+                        <tr><td><code>.fml-card-footer</code></td><td>Title and metadata row below the preview</td></tr>
+                        <tr><td><code>.fml-context-menu</code></td><td>Right-click context menu overlay (position: fixed)</td></tr>
+                        <tr><td><code>.fml-lightbox</code></td><td>Fullscreen media viewer modal</td></tr>
+                        <tr><td><code>.fml-guide-card</code></td><td>Onboarding banner for first-time users</td></tr>
+                        <tr><td><code>.fml-video-player</code></td><td>Native video element inside lightbox</td></tr>
+                        <tr><td><code>.fml-pdf-viewer</code></td><td>PDF iframe inside lightbox</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>CSS Variables</h3>
+                <p>Override the primary color and backgrounds in your app's CSS:</p>
+                <pre><code>/* Override in your app.css */
+:root {
+    --fml-primary: 99, 102, 241;       /* Indigo instead of blue */
+    --fml-card-bg: #0f172a;            /* Custom dark card background */
+    --fml-border: #1e293b;
+}</code></pre>
+            </section>
+
+            <!-- Smart Storage & Security -->
+            <section id="smart-features">
+                <h2><i data-lucide="info"></i>Smart Storage &amp; Security</h2>
+                <h3>Duplicate File Links</h3>
+                <p>To optimize server space, the system hashes each file payload (SHA-256). If a duplicate hash is detected on the disk, the uploader maps the database entry directly to the existing file path, omitting redundant disk writes.</p>
+                
+                <h3>Private Collections & Signed URLs</h3>
+                <p>Files written to private disks (e.g. <code>local</code>, or private S3 buckets) are secured automatically. The <code>getUrl()</code> helper detects private visibility and generates temporary <strong>Signed URLs</strong> valid for 1 hour.</p>
+                <pre><code>$privateUrl = $document->getFirstMediaUrl('invoices'); 
+// Output: /media-serve/20/invoice.pdf?expires=178652672&signature=abcdef...</code></pre>
+            </section>
+
+            <!-- API Reference -->
+            <section id="api-reference">
+                <h2><i data-lucide="terminal"></i>API Reference</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>addMedia($file)</code></td>
+                            <td>Starts fluent uploading. Supports local path, UploadedFile, or Livewire uploads.</td>
+                        </tr>
+                        <tr>
+                            <td><code>media($collection)</code></td>
+                            <td>Gets the collection (or first record in single mode).</td>
+                        </tr>
+                        <tr>
+                            <td><code>getFirstMediaUrl($collection, $conversion)</code></td>
+                            <td>Resolves the SEO URL path for the first item.</td>
+                        </tr>
+                        <tr>
+                            <td><code>img($conversion, $attributes)</code></td>
+                            <td>Compiles responsive HTML image tags.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/docs.js"></script>
+</body>
+</html>
